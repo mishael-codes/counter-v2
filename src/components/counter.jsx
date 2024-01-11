@@ -1,4 +1,5 @@
 import * as Icon from "react-feather";
+import { Link } from "react-router-dom";
 import useCounter from "../hooks/useCounter";
 import useToggleText from "../hooks/useToggleText";
 
@@ -10,7 +11,7 @@ function Counter() {
     decrementBy10,
     decrement,
     setValue,
-    reset
+    reset,
   } = useCounter();
 
   const { text, toggle } = useToggleText();
@@ -27,55 +28,58 @@ function Counter() {
   };
 
   return (
-    <div className="w-96 h-80 flex items-center justify-evenly flex-col bg-sky-600 rounded-xl shadow-2xl shadow-sky-600 border-solid border-8 border-white">
-      <p className="text-white font-bold text-2xl md:text-4xl">{count}</p>
-      <div className="buttons w-full flex justify-around flex-wrap">
-        <button
-          className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:-translate-y-1 transition-all"
-          onClick={increment}
-        >
-          <Icon.ChevronUp />
-        </button>
-        <button
-          className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:translate-y-1 transition-all"
-          onClick={decrement}
-        >
-          <Icon.ChevronDown />
-        </button>
-        <button
-          className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:scale-75 transition-all"
-          onClick={reset}
-        >
-          <Icon.RotateCcw />
-        </button>
-        <div className="mt-4 hideThis hidden buttons w-full justify-around">
+    <div className="flex flex-col items-center">
+      <div className="w-96 h-80 flex items-center justify-evenly flex-col bg-sky-600 rounded-xl shadow-2xl shadow-sky-600 border-solid border-8 border-white">
+        <p className="text-white font-bold text-2xl md:text-4xl">{count}</p>
+        <div className="buttons w-full flex justify-around flex-wrap">
           <button
-            className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:-translate-y-2 transition-all"
-            onClick={incrementBy10}
+            className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:-translate-y-1 transition-all"
+            onClick={increment}
           >
-            <Icon.ChevronsUp />
+            <Icon.ChevronUp />
           </button>
           <button
-            className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:translate-y-2 transition-all"
-            onClick={decrementBy10}
+            className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:translate-y-1 transition-all"
+            onClick={decrement}
           >
-            <Icon.ChevronsDown />
+            <Icon.ChevronDown />
           </button>
-          <input
-            type="number"
-            maxLength={15}
-            placeholder="Enter a number"
-            className="w-[44px] bg-sky-600 text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 focus:outline-none"
-            onChange={handleChange}
-          />
+          <button
+            className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:scale-75 transition-all"
+            onClick={reset}
+          >
+            <Icon.RotateCcw />
+          </button>
+          <div className="mt-4 hideThis hidden buttons w-full justify-around">
+            <button
+              className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:-translate-y-2 transition-all"
+              onClick={incrementBy10}
+            >
+              <Icon.ChevronsUp />
+            </button>
+            <button
+              className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:translate-y-2 transition-all"
+              onClick={decrementBy10}
+            >
+              <Icon.ChevronsDown />
+            </button>
+            <input
+              type="number"
+              maxLength={15}
+              placeholder="Enter a number"
+              className="w-[44px] bg-sky-600 text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 focus:outline-none"
+              onChange={handleChange}
+            />
+          </div>
         </div>
+        <button
+          onClick={toggle}
+          className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:scale-90 transition-all"
+        >
+          {text}
+        </button>
       </div>
-      <button
-        onClick={toggle}
-        className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 active:scale-90 transition-all"
-      >
-        {text}
-      </button>
+      <Link to="/" className="text-white font-semibold border-2 border-white rounded-md shadow-md shadow-sky-400 py-1 px-2 mt-8">Home</Link>
     </div>
   );
 }
